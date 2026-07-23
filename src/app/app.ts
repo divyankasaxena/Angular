@@ -10,14 +10,17 @@ import { Signup } from './signup/signup';
   styleUrl: './app.css'
 })
 export class App {
-  count = 0 
-  handleIncrement() {
-    this.count = this.count + 1;
+  name=""
+  displayName ="";
+  email="";
+  getName(event : Event){
+    this.name = (event.target as HTMLInputElement).value;
   }
-  handleDecrement() {
-    this.count = this.count - 1;
+  showName(){
+    this.displayName = this.name;
   }
-  handleReset() {
-    this.count = 0;
-  }
+  setName(){
+    this.name = "Divyanka Saxena";
+  }  
+  
 }
