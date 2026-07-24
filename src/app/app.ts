@@ -1,26 +1,24 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Login } from './login/login';
-import { Signup } from './signup/signup';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [Login, Signup, RouterOutlet  ],
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  name=""
-  displayName ="";
-  email="";
-  getName(event : Event){
-    this.name = (event.target as HTMLInputElement).value;
+  task = "";
+  taskList: { id: number; task: string }[] = [];
+
+  addTask(){
+    this.taskList.push({ id: this.taskList.length + 1, task: this.task });
+    this.task = "";
+    console.log(this.taskList);
   }
-  showName(){
-    this.displayName = this.name;
+
+  deleteTask(id: number){
+    this.taskList = this.taskList.filter(task => task.id !== id);
   }
-  setName(){
-    this.name = "Divyanka Saxena";
-  }  
-  
 }
